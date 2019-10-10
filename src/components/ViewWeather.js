@@ -18,8 +18,8 @@ class ViewWeather extends React.Component {
         super(props);
 
         this.state = {
-            city: '',
-            country: '',
+            city: false,
+            country: false,
             latitude: '',
             longitude: '',
             temp: '',
@@ -43,7 +43,7 @@ class ViewWeather extends React.Component {
         const country = e.target.elements.country.value;
         const apiID = '05508bb378ad891b493b0c886cca7a57'
         try {
-            if (country && city)  {
+            if (country === true && city === true)  {
              const response = await
         axios.get('http://api.openweathermap.org/data/2.5/weather', {
             params: {
