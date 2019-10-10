@@ -32,6 +32,7 @@ class ViewWeather extends React.Component {
             id: '',
             clouds: '',
             error: '',
+            loading: false
         }
     }
 
@@ -49,11 +50,12 @@ class ViewWeather extends React.Component {
                 q:`${city},${country}`,
                 appid: `${apiID}`,
                 units: 'metric',
+                lang: 'pl'
             }
             
         })
         console.log(response);
-            this.setState({
+           this.setState({
                 city: response.data.name,
                 country: response.data.sys.country,
                 latitude: response.data.coord.lat,
@@ -68,7 +70,8 @@ class ViewWeather extends React.Component {
                 id: response.data.weather[0].id,
                 clouds: response.data.clouds.all,
                 error: '',
-            });
+                loading: true
+            })
         }
         else {
                 this.setState({
@@ -85,7 +88,8 @@ class ViewWeather extends React.Component {
                 wind: undefined,
                 id: undefined,
                 clouds: undefined,
-                error: 'Proszę wpisz prawidłowe miasto i kraj, np. --- Miasto: Poznan, Kraj: PL ---'
+                error: 'Podaj prawidłowe miasto i kraj, np: - Miasto: Poznan, Kraj: PL -',
+                loading: false
         })
     }
 } catch (error) {
@@ -95,6 +99,7 @@ class ViewWeather extends React.Component {
 
     render() {
         let result;
+        //let load = (<h4>Loading</h4>)
         //let icon;
         if (this.state.error !== undefined && this.state.country && this.state.city) {
             result = 
@@ -104,7 +109,7 @@ class ViewWeather extends React.Component {
                     <span className="geo"> Geo:  {this.state.longitude}, {this.state.latitude}</span>  
                 </p>
                 <p className="temp">
-                    <span>Temp:{Math.round(this.state.temp)} °C </span>
+                    <span>Temp: {Math.round(this.state.temp)} °C </span>
                     <span>Min: {Math.round(this.state.temp_min)} °C </span>
                     <span>Max: {Math.round(this.state.temp_max)} °C </span>
                 </p>
@@ -118,7 +123,7 @@ class ViewWeather extends React.Component {
         }
         else {
             result = <div className="error">
-                <p>{this.state.error}</p>
+                <em>{this.state.error}</em>
             </div>
         }
 
@@ -129,6 +134,6 @@ class ViewWeather extends React.Component {
             </div>
         );
     }
-};
+}
 
 export default ViewWeather;

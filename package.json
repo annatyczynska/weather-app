@@ -1,19 +1,24 @@
 {
   "name": "wheather-app",
+  "homepage": "https://annatyczynska.github.io/weather-app/",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
     "axios": "^0.19.0",
     "bootstrap": "^4.3.1",
     "date-fns": "^2.4.1",
+    "gh-pages": "^2.1.1",
     "jquery": "^3.4.1",
     "popper.js": "^1.15.0",
     "react": "^16.10.2",
     "react-dom": "^16.10.2",
     "react-scripts": "3.2.0",
+    "serve": "^11.2.0",
     "typescript": "^3.6.3"
   },
   "scripts": {
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build",
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",

@@ -14,7 +14,7 @@ class App extends React.Component {
           <div className="col-xs-7 title">
             <Title />
           </div>
-          <div className="col-xs-7 weather">
+          <div className="col-xs-4 weather">
             <ViewWeather />
           </div>
         </div>
