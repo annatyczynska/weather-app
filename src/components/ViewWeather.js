@@ -19,7 +19,6 @@ class ViewWeather extends React.Component {
 
         this.state = {
             city: '',
-            country: '',
             latitude: '',
             longitude: '',
             temp: '',
@@ -38,26 +37,23 @@ class ViewWeather extends React.Component {
 
     getWeather = async (e) => {
         e.preventDefault();
-       // const { city, country, apiID, units } = this.props;
+       // const { city, apiID, units } = this.props;
         const city = e.target.elements.city.value;
-        const country = e.target.elements.country.value;
         const apiID = '05508bb378ad891b493b0c886cca7a57'
         try {
-            if (country && city)  {
+            if (city)  {
              const response = await
-        axios.get('http://api.openweathermap.org/data/2.5/weather', {
+        axios.get('https://api.openweathermap.org/data/2.5/weather', {
             params: {
-                q:`${city},${country}`,
+                q:`${city}`,
                 appid: `${apiID}`,
                 units: 'metric',
                 lang: 'pl'
             }
-            
         })
         console.log(response);
            this.setState({
                 city: response.data.name,
-                country: response.data.sys.country,
                 latitude: response.data.coord.lat,
                 longitude: response.data.coord.lon,
                 temp: response.data.main.temp,
@@ -73,10 +69,10 @@ class ViewWeather extends React.Component {
                 loading: true
             })
         }
+    
         else {
                 this.setState({
                 city: undefined,
-                country: undefined,
                 latitude: undefined,
                 longitude: undefined,
                 temp: undefined,
@@ -88,10 +84,11 @@ class ViewWeather extends React.Component {
                 wind: undefined,
                 id: undefined,
                 clouds: undefined,
-                error: 'Podaj prawidłowe miasto i kraj, np: - Miasto: Poznan, Kraj: PL -',
+                error: 'Podaj prawidłowe miasto np. Poznan',
                 loading: false
         })
     }
+
 } catch (error) {
         console.log(error);
     }
@@ -101,11 +98,11 @@ class ViewWeather extends React.Component {
         let result;
         //let load = (<h4>Loading</h4>)
         //let icon;
-        if (this.state.error !== undefined && this.state.country && this.state.city) {
+        if (this.state.error !== undefined && this.state.city) {
             result = 
             (<div className="weather">
                 <p className="city">
-                    <span> {this.state.city}, {this.state.country} </span>
+                    <span> {this.state.city} </span>
                     <span className="geo"> Geo:  {this.state.longitude}, {this.state.latitude}</span>  
                 </p>
                 <p className="temp">
