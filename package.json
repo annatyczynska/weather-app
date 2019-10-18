@@ -14,7 +14,8 @@
     "react-dom": "^16.10.2",
     "react-scripts": "3.2.0",
     "serve": "^11.2.0",
-    "typescript": "^3.6.3"
+    "typescript": "^3.6.3",
+    "yarn.lock": "^0.0.1-security"
   },
   "scripts": {
     "predeploy": "npm run build",
