@@ -3,8 +3,7 @@ import '../App.css';
 import {format} from 'date-fns';
 import {pl} from 'date-fns/locale';
 
-class Title extends React.Component {
-    render() {
+const Title = () => {
         const today = format(new Date(), "EEEE, dd MMMM yyyy", {locale: pl});
         const time = format(new Date(), "p", {locale: pl});
         const day = format(new Date(), "DDD 'dzień w roku'", {locale: pl});
@@ -18,7 +17,6 @@ class Title extends React.Component {
                 </div>
             </div>
         );
-    }
 };
 
 export default Title;
