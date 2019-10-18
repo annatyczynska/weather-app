@@ -16,7 +16,7 @@ const ViewWeather = props => {
     const {city, longitude, latitude, temp, temp_max, temp_min, humidity, pressure, 
     clouds, wind, rain, error, value} = props.weather;
 
-        if (!error && value) {
+        if (!error && city) {
             result = 
         (<div className="weather">
             <p className="city">
